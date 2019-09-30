@@ -1,99 +1,13 @@
 <?php
 session_start();
-
 include_once "../myphp/models/loginApiAmocrm.php";
 use app\models\amocrm\loginApiAmocrm;
 include_once "../myphp/models/workInApiAmocrm.php";
 use app\models\amocrm\workInApiAmocrm;
-
-
-//!!! ВРЕМЕННО !!! ПРОБА !!!
-// $subdomain = 'gudkovleonid74';
-// $searchByValue = [
-  // 'id' => [3897419,3895171,3898567],
-  // 'type' => ['CUSTOMER'],
-  // 'element_id' => [8259523,8258403,8261007],
-  // 'responsible_user_id' => [3808486,3808159],
-// ];
-// $limit_rows = 1;
-// $limit_offset = 2;
-// $filter = [
-//   'date_create' => ['from' => 444, 'to' => 555],
-//   'date_modify' => ['from' => 444, 'to' => 555],
-//   'pipe' => [
-//     666 => [777,888,999],
-//   ],
-//   'status' => 0,
-//   'created_by' => [2222,3333,4444,5555],
-//   'task_type' => [6666,7777,8888,9999],
-// ];
-// $out = (new workInApiAmocrm($subdomain))->searchTasksAmocrm($searchByValue, $limit_rows, $limit_offset, $filter);
-// $out = (new workInApiAmocrm($subdomain))->searchTasksAmocrm();
-// $out = (new workInApiAmocrm($subdomain))->searchTasksAmocrm($searchByValue);
-// echo 'var_dump($out) = '."<br>"; var_dump($out);
-//!!!
-
-
-// echo 'var_dump($_POST) = '."<br>"; var_dump($_POST);
-
-
-// !!! ВРЕМЕННО !!!
-// echo 'var_dump($_SESSION) = '."<br>"; var_dump($_SESSION);
-// if (!empty($_SESSION['authAmocrm'])) {
-//   echo 'var_dump($_SESSION[\'authAmocrm\']) = '."<br>"; var_dump($_SESSION['authAmocrm']);
-// }
-// if (!empty($_SESSION['usersAccountAmocrm'])) {
-//   foreach ($_SESSION['usersAccountAmocrm'] as $key => $value) {
-//     echo 'var_dump($_SESSION[\'usersAccountAmocrm\']['.$key.']) = '."<br>"; var_dump($value);
-//   }
-// }
-// if (!empty($_SESSION['infoAccountAmocrm'])) {
-//   echo 'var_dump($_SESSION[\'infoAccountAmocrm\']) = '."<br>"; var_dump($_SESSION['infoAccountAmocrm']);
-// }
-// if (!empty($_SESSION['infoAccountAmocrm']['custom_fields'])) {
-//   foreach ($_SESSION['infoAccountAmocrm']['custom_fields'] as $key1 => $value1) {
-//     echo 'var_dump($_SESSION[\'infoAccountAmocrm\'][\'custom_fields\']['.$key1.']) = '."<br>"; var_dump($value1);
-//     // if (is_array($value1)) {
-//     //   foreach ($value1 as $key2 => $value2) {
-//     //     echo 'var_dump($_SESSION[\'infoAccountAmocrm\'][\'custom_fields\']['.$key1.']['.$key2.']) = '."<br>"; var_dump($value2);
-//     //   }
-//     // }
-//   }
-// }
-// if (!empty($_SESSION['infoAccountAmocrm']['custom_fields_enum'])) {
-//   foreach ($_SESSION['infoAccountAmocrm']['custom_fields_enum'] as $key1 => $value1) {
-//     echo 'var_dump($_SESSION[\'infoAccountAmocrm\'][\'custom_fields_enum\']['.$key1.']) = '."<br>"; var_dump($value1);
-//     // if (is_array($value1)) {
-//     //   foreach ($value1 as $key2 => $value2) {
-//     //     echo 'var_dump($_SESSION[\'infoAccountAmocrm\'][\'custom_fields_enum\']['.$key1.']['.$key2.']) = '."<br>"; var_dump($value2);
-//     //   }
-//     // }
-//   }
-// }
-// if (!empty($_SESSION['infoAccountAmocrm']['pipelines'])) {
-//   foreach ($_SESSION['infoAccountAmocrm']['pipelines'] as $key => $value) {
-//     echo 'var_dump($_SESSION[\'infoAccountAmocrm\'][\'pipelines\']['.$key.']) = '."<br>"; var_dump($value);
-//   }
-// }
-
-// if (!empty($_SESSION['queue_contacts'])) {
-//   echo 'var_dump($_SESSION[\'queue_contacts\']) = '."<br>"; var_dump($_SESSION['queue_contacts']);
-// }
-
-
 //Проверка в сессии наличия токена, если нет, то создать
 if (empty($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32));
 }
-
-
-// echo 'var_dump(loginApiAmocrm::getEmail()) = '."<br>"; var_dump(loginApiAmocrm::getEmail());
-// echo 'var_dump(loginApiAmocrm::getUserKey()) = '."<br>"; var_dump(loginApiAmocrm::getUserKey());
-// echo 'var_dump(loginApiAmocrm::getSubdomain()) = '."<br>"; var_dump(loginApiAmocrm::getSubdomain());
-// echo 'var_dump(loginApiAmocrm::getType()) = '."<br>"; var_dump(loginApiAmocrm::getType());
-// echo 'var_dump(loginApiAmocrm::getLoginTime()) = '."<br>"; var_dump(loginApiAmocrm::getLoginTime());
-
-
 //Проверка проводилась ли авторизация?
 if (isset($_SESSION['authAmocrm'], $_SESSION['authAmocrm']['auth']) && $_SESSION['authAmocrm']['auth']) {
   //Статус авторизации
@@ -106,7 +20,6 @@ if (isset($_SESSION['authAmocrm'], $_SESSION['authAmocrm']['auth']) && $_SESSION
     $subdomain = $_SESSION['loginAmocrm']['subdomain'];
     //Инициализация свойств класса, без создания экземпляра класса
     try {
-//      $status_init = loginApiAmocrm::initParams($_SESSION['loginAmocrm']['email'], $_SESSION['loginAmocrm']['userKey'], $_SESSION['loginAmocrm']['subdomain']);
       $status_authorization = loginApiAmocrm::initParams($_SESSION['loginAmocrm']['email'], $_SESSION['loginAmocrm']['userKey'], $_SESSION['loginAmocrm']['subdomain'], $_SESSION['loginAmocrm']['login_time']);
     } catch (\Exception $e) {
 // echo 'Выброшено исключение: ', $e->getMessage(), "\n";
@@ -114,27 +27,9 @@ if (isset($_SESSION['authAmocrm'], $_SESSION['authAmocrm']['auth']) && $_SESSION
     }
   }
 }
-
-// echo 'var_dump(loginApiAmocrm::getEmail()) = '."<br>"; var_dump(loginApiAmocrm::getEmail());
-// echo 'var_dump(loginApiAmocrm::getUserKey()) = '."<br>"; var_dump(loginApiAmocrm::getUserKey());
-// echo 'var_dump(loginApiAmocrm::getSubdomain()) = '."<br>"; var_dump(loginApiAmocrm::getSubdomain());
-// echo 'var_dump(loginApiAmocrm::getType()) = '."<br>"; var_dump(loginApiAmocrm::getType());
-// echo 'var_dump(loginApiAmocrm::getLoginTime()) = '."<br>"; var_dump(loginApiAmocrm::getLoginTime());
-// // echo 'date("Y-m-d\TH:i:sO", loginApiAmocrm::getLoginTime()) = '.date("Y-m-d\TH:i:sO", loginApiAmocrm::getLoginTime())."<br>"."<br>";
-// echo 'var_dump(loginApiAmocrm::isRelevantAuth()) = '."<br>"; var_dump(loginApiAmocrm::isRelevantAuth());
-
-
-//Проверка: "выполнено присвоение значений свойства класса?"
-// echo 'var_dump(loginApiAmocrm::isNonEmptyProperties()) = '."<br>"; var_dump(loginApiAmocrm::isNonEmptyProperties());
-
-
-
 //Считывание из сессии токена для POST запросов и формирование аригинальных токенов для разных форм запросов
 //Хеш токена, на основе названия форм "queue_contacts" таблицы "Очередь необработанных заявок"
 $hash_token_queue_contacts = hash_hmac('sha256', 'queue_contacts', $_SESSION['token']);
-// echo 'var_dump($hash_token_queue_contacts) = '."<br>"; var_dump($hash_token_queue_contacts);
-
-
 //Считывание из $_POST - данных "обработанного" контакта и удаление из очереди выполненной заявки этого контакта
 if (isset($_POST['contact']['delete_hash']) && !empty($_SESSION['queue_contacts'])) {
   if (!empty($_POST['contact']['token']) && hash_equals($hash_token_queue_contacts, $_POST['contact']['token'])) {
@@ -146,8 +41,6 @@ if (isset($_POST['contact']['delete_hash']) && !empty($_SESSION['queue_contacts'
     unset($delete_hash,$key);
   }
 }
-
-
 //Считывание очереди заявок. Пока из СЕССИИ, можно переделать на из БД
 if (!empty($_SESSION['queue_contacts'])) {
   $queue_contacts = $_SESSION['queue_contacts'];
@@ -160,8 +53,6 @@ if (!empty($_SESSION['infoAccountAmocrm'])) {
 if (!empty($_SESSION['usersAccountAmocrm'])) {
   $usersAccountAmocrm = $_SESSION['usersAccountAmocrm'];
 }
-
-
 //Считывание из $_POST - данных контакта для поика, обработки и добавления в AmoCRM
 if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['contact']['phone'], $_POST['contact']['email'])) {
   if (!empty($_POST['contact']['token']) && hash_equals($hash_token_queue_contacts, $_POST['contact']['token'])) {
@@ -185,13 +76,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
       }
     }
     unset($key,$queue_hash);
-
-// echo 'В начале. var_dump($contact) = '."<br>"; var_dump($contact);
-
     //Если выполнена авторизация в API AmoCRM
     if (isset($status_authorization) && $status_authorization) {
-// echo 'var_dump(loginApiAmocrm::getLoginTime()) = '."<br>"; var_dump(loginApiAmocrm::getLoginTime());
-// echo 'var_dump(loginApiAmocrm::isRelevantAuth()) = '."<br>"; var_dump(loginApiAmocrm::isRelevantAuth());
       //Проверка актуальности авторизации (Куки авторизации НЕ просрочен)
       if (! loginApiAmocrm::isRelevantAuth()) {
         try {
@@ -202,8 +88,6 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
             $_SESSION['loginAmocrm']['login_time'] = $out['response']['server_time'];
             $status_time_authorization = true;
           }
-// echo '!!! Выполнена повторная авторизация !!!'."<br>";
-// echo 'var_dump(loginApiAmocrm::isRelevantAuth()) = '."<br>"; var_dump(loginApiAmocrm::isRelevantAuth());
         } catch (\Exception $e) {
 // echo 'Выброшено исключение: ', $e->getMessage(), "\n";
           $status_time_authorization = false;
@@ -212,65 +96,12 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
       } else {
         $status_time_authorization = true;
       }
-
-// echo 'var_dump(loginApiAmocrm::getLoginTime()) = '."<br>"; var_dump(loginApiAmocrm::getLoginTime());
-
-
-// echo 'var_dump($contact) = '."<br>"; var_dump($contact);
       //Поиск контакта в API AmoCRM
       if ($status_time_authorization && isset($subdomain)) {
         //Создание экземпляра класса
         $obj = new workInApiAmocrm($subdomain);
-// echo 'var_dump($obj) = '."<br>"; var_dump($obj);
-
-
-//!!! Проба для проверки класса "workInApiAmocrm"
-//Поиск контакта по 'id'
-// $id = 13629583;
-// // $id = 13632509;
-// $out = $obj->searchContactAmocrm($id, 'id', 10);
-// echo 'var_dump($out) = '."<br>"; var_dump($out);
-// //Обработка ответа
-// if (isset($out['status']) && $out['status'] == 'ok') {
-//   if (isset($out['count'], $out['response']) && $out['count'] > 0) {
-//     $contact['isFound'] = true;
-//     $contact['searchBy'] = 'id';
-//     $contact['data_contact'] = $out['response'];
-//   }
-// }
-//Поиск контакта по массиву 'id'
-// $id = [13629583, 13632509];
-// $out = $obj->searchContactAmocrm($id, 'id', 10);
-// echo 'var_dump($out) = '."<br>"; var_dump($out);
-// //Обработка ответа
-// if (isset($out['status']) && $out['status'] == 'ok') {
-//   if (isset($out['count'], $out['response']) && $out['count'] > 0) {
-//     $contact['isFound'] = true;
-//     $contact['searchBy'] = 'array(id)';
-//     $contact['data_contact'] = $out['response'];
-//   }
-// }
-//Поиск контакта по 'responsible_user_id'
-// $responsible_user_id = 3808159;
-// $out = $obj->searchContactAmocrm($responsible_user_id, 'responsible_user_id', 10);
-// echo 'var_dump($out) = '."<br>"; var_dump($out);
-// //Обработка ответа
-// if (isset($out['status']) && $out['status'] == 'ok') {
-//   if (isset($out['count'], $out['response']) && $out['count'] > 0) {
-//     $contact['isFound'] = true;
-//     $contact['searchBy'] = 'responsible_user_id';
-//     $contact['data_contact'] = $out['response'];
-//   }
-// }
-//!!! Конец.Проба для проверки класса "workInApiAmocrm"
-
         //Поиск контакта по "телефону"
-// echo 'var_dump(substr($contact[\'phone\'], 2)) = '."<br>"; var_dump(substr($contact['phone'], 2));
         $out = $obj->searchContactAmocrm(substr($contact['phone'], 2));
-// echo 'var_dump(substr($contact[\'phone\'], 2, 4)) = '."<br>"; var_dump(substr($contact['phone'], 2, 4));
-//         $out = $obj->searchContactAmocrm(substr($contact['phone'], 2, 4), 'query', 10);
-// echo 'Поиск контакта по "телефону". var_dump($out) = '."<br>"; var_dump($out);
-
         //Обработка ответа
         if (isset($out['status']) && $out['status'] == 'ok') {
           if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
@@ -281,17 +112,11 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
             }
             $contact['data_contact'] = $out['response'][0];
           }
-//        } else {
-//!!! Как отбрабатывать ошибки ???
         }
-// echo 'После поиска контакта по ТЕЛЕФОНУ. var_dump($contact[\'isFound\']) = '."<br>"; var_dump($contact['isFound']);
-
-
         //Если контакт Не найден, продолжаем поиск...
         if (!$contact['isFound']) {
           //Поиск контакта по "адресу почты"
           $out = $obj->searchContactAmocrm($contact['email']);
-// echo 'Поиск контакта по "адресу почты". var_dump($out) = '."<br>"; var_dump($out);
           //Обработка ответа
           if (isset($out['status']) && $out['status'] == 'ok') {
             if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
@@ -302,68 +127,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
               }
               $contact['data_contact'] = $out['response'][0];
             }
-//          } else {
-//!!! Как отбрабатывать ошибки ???
           }
         }
-// echo 'После поиска контакта по EMAIL. var_dump($contact[\'isFound\']) = '."<br>"; var_dump($contact['isFound']);
-
-
-//!!! Проба обновления контакта, для проверки метода "actionContactAmocrm" класса "workInApiAmocrm"
-//Если контакт найден
-// if ($contact['isFound']) {
-//   $new_name = $contact['name'].'I';
-//   //Массв массивов данных для обновления "Контактов"
-//   $data = [
-//     [
-//       'id' => $contact['data_contact']['id'],
-//       'updated_at' => time(),
-//       'name' => $new_name,
-//       // 'custom_fields' => [
-//       //   [
-//       //     'code' => 'PHONE',
-//       //     'values' => [
-//       //       [
-//       //         'value' => $contact['phone'],
-//       //         'enum' => 'MOB'
-//       //       ]
-//       //     ]
-//       //   ],
-//       //   [
-//       //     'code' => 'EMAIL',
-//       //     'values' => [
-//       //       [
-//       //         'value' => $contact['email'],
-//       //         'enum' => 'PRIV'
-//       //       ]
-//       //     ]
-//       //   ],
-//       // ]
-//     ]
-//   ];
-// echo 'var_dump($data[0]) = '."<br>"; var_dump($data[0]);
-//
-//   //Обновляем контакт
-//   $out = $obj->actionContactAmocrm('update', $data);
-//   echo 'var_dump($out) = '."<br>"; var_dump($out);
-//
-//   //Обработка ответа, дозаполнение полей контакта
-//   if (isset($out['status']) && $out['status'] == 'ok') {
-//     if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
-//       $contact['isCreated'] = true;
-//       if (!empty($out['response'][0]['id']) && $out['response'][0]['id'] == $contact['data_contact'][0]['id']) {
-//         //!перезаписать обновленные поля... можно в цикле по $data
-//         $contact['data_contact']['name'] = $data[0]['name'];
-//         $contact['name'] = $data[0]['name'];
-//       }
-//     }
-//   // } else {
-//   //!!! Как отбрабатывать ошибки ???
-//   }
-// }
-//!!! Конец.Проба обновления контакта, для проверки метода "actionContactAmocrm" класса "workInApiAmocrm"
-
-
         //Если заявка не выпонена И контакт Не найден, ни по "телефону" ни "адресу почты"? Создание нового Контакта
         if (!$contact['isCompleted'] && !$contact['isFound']) {
           //Выбор ответственного за контакт
@@ -404,13 +169,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
             ]
           ];
           unset($key_group,$queue_manager,$responsible_user_id);
-
-// echo 'var_dump($data[0]) = '."<br>"; var_dump($data[0]);
-
           //Создаем Новый контакт
           $out = $obj->actionContactAmocrm('add', $data);
-// echo 'var_dump($out) = '."<br>"; var_dump($out);
-
           //Обработка ответа, дозаполнение полей контакта
           if (isset($out['status']) && $out['status'] == 'ok') {
             if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
@@ -420,14 +180,9 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
                 $contact['data_contact']['id'] = $out['response'][0]['id'];
               }
             }
-          } else {
-           // $contact['isCreated'] = false;
-//!!! Как отбрабатывать ошибки ???
           }
           unset($data);
         }
-
-
         //Если контакт найден или создан, добавление имён создателя и ответственного
         if ($contact['isFound'] || $contact['isCreated']) {
           if (!empty($usersAccountAmocrm) && is_array($usersAccountAmocrm)) {
@@ -435,13 +190,11 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
               if (!empty($contact['data_contact']['created_by'])) {
                 if (($key = array_search($contact['data_contact']['created_by'], array_column($value_group['users'], 'id'))) !== false) {
                   $contact['data_contact']['created_name'] = $value_group['users'][$key]['name'];
-// echo 'Найден "created_by" var_dump($value_group[\'users\']['.$key.'][\'name\']) = '."<br>"; var_dump($value_group['users'][$key]['name']);
                 }
               }
               if (!empty($contact['data_contact']['responsible_user_id'])) {
                 if (($key = array_search($contact['data_contact']['responsible_user_id'], array_column($value_group['users'], 'id'))) !== false) {
                   $contact['data_contact']['responsible_user_name'] = $value_group['users'][$key]['name'];
-// echo 'Найден "responsible_user_id" var_dump($value_group[\'users\']['.$key.'][\'name\']) = '."<br>"; var_dump($value_group['users'][$key]['name']);
                 }
               }
               if (isset($contact['data_contact']['created_name'], $contact['data_contact']['responsible_user_name'])) {
@@ -451,14 +204,7 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
           }
           unset($key);
         }
-
-
-// if (isset($contact)) {
-//   echo 'var_dump($contact) = '."<br>"; var_dump($contact);
-// }
-
         //Если заявка не выпонена И контакт найден или создан, то Создание сделки
-// if (false) {//!!! ВРЕМЕННО !!!
         if (!$contact['isCompleted'] && ($contact['isFound'] || $contact['isCreated'])) {
           //Откуда пришла заявка
           $site = isset($contact['request']['form']['page']) ? parse_url($contact['request']['form']['page'],PHP_URL_HOST) : $_SERVER['SERVER_NAME'];
@@ -468,7 +214,6 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
               'name' => "Заявка с сайта $site от ".date('d.m.Y',time()),
               'created_at' => time(),
               'status_id' => isset($infoAccountAmocrm['pipelines'][0]['statuses'][0]['id']) ? $infoAccountAmocrm['pipelines'][0]['statuses'][0]['id'] : 29859331,
-              // 'pipeline_id' => isset($infoAccountAmocrm['pipelines'][0]['statuses'][0]['id']) ? $infoAccountAmocrm['pipelines'][0]['statuses'][0]['id'] : 29859331,
               'responsible_user_id' => $contact['data_contact']['responsible_user_id'],
               'contacts_id' => $contact['data_contact']['id'],
               'custom_fields' => [],
@@ -548,16 +293,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
               unset($value);
             }
           }
-
-// echo 'var_dump($data[0]) = '."<br>"; var_dump($data[0]);
-// foreach ($data[0]['custom_fields'] as $key => $value) {
-//   echo 'var_dump($data[0][\'custom_fields\']['.$key.']) = '."<br>"; var_dump($value);
-// }
-
           //Создаем Новую сделку
           $out = $obj->actionLeadsAmocrm('add', $data);
-// echo 'Ответ на: Создаем Новую сделку'.'var_dump($out) = '."<br>"; var_dump($out);
-
           //Обработка ответа, дозаполнение полей контакта
           if (isset($out['status']) && $out['status'] == 'ok') {
             if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
@@ -567,12 +304,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
                 $contact['data_leads']['id'] = $out['response'][0]['id'];
               }
             }
-          // } else {
-           // $contact['isAddLeads'] = false;
-//!!! Как отбрабатывать ошибки ???
           }
           unset($data,$arr);
-
           //Если Сделка создана, добавление имени ответственного и назания воронки
           if ($contact['isAddLeads']) {
             if (!empty($usersAccountAmocrm) && is_array($usersAccountAmocrm)) {
@@ -580,7 +313,6 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
                 if (!empty($contact['data_leads']['responsible_user_id'])) {
                   if (($key = array_search($contact['data_leads']['responsible_user_id'], array_column($value_group['users'], 'id'))) !== false) {
                     $contact['data_leads']['responsible_user_name'] = $value_group['users'][$key]['name'];
-// echo 'Найден "responsible_user_id" var_dump($value_group[\'users\']['.$key.'][\'name\']) = '."<br>"; var_dump($value_group['users'][$key]['name']);
                     break;
                   }
                 }
@@ -599,34 +331,9 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
             unset($key);
           }
         }
-
-
-//Для проверки !!! Получение данных о сделке по ее ID
-// if (1) {
-//   $id_lead = $contact['data_leads']['id'];
-//   // $id_lead = 9665727;
-//   // $id_lead = 9665869;
-//
-//   //Поиск сделки по "ID"
-//   $out = $obj->searchLeadsAmocrm($id_lead);
-// echo 'Ответ на Проверочный запрос Поиска Сделки ID:'.$id_lead.'! var_dump($out) = '."<br>"; var_dump($out);
-// if (isset($out['response'][0])) {
-//   echo 'var_dump($out[\'response\'][0]) = '."<br>"; var_dump($out['response'][0]);
-//   if (isset($out['response'][0]['custom_fields']) && is_array($out['response'][0]['custom_fields'])) {
-//     foreach ($out['response'][0]['custom_fields'] as $key => $value) {
-//       echo 'var_dump($out[\'response\'][0][\'custom_fields\']['.$key.']) = '."<br>"; var_dump($value);
-//     }
-//   }
-// }
-// echo 'Конец. Ответ на Проверочный запрос Поиска Сделки ID:'.$id_lead."<br>";
-// }
-//Конец.Для проверки !!! Получение данных о сделке по ее ID
-
-
         //Если заявка не выпонена И контакт найден ИЛИ создан, И создана сделка
         if (!$contact['isCompleted'] && ($contact['isFound'] || $contact['isCreated']) && $contact['isAddLeads']) {
           //Создание новой Задачи
-          //Откуда пришла заявка
           $site = isset($contact['request']['form']['page']) ? parse_url($contact['request']['form']['page'],PHP_URL_HOST) : $_SERVER['SERVER_NAME'];
           $data = [
             [
@@ -644,7 +351,6 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
           }
           //Создаем Новую ЗАДАЧУ
           $out = $obj->actionTasksAmocrm('add', $data);
-// echo 'Ответ на: Создаем Новую ЗАДАЧУ. '.'var_dump($out) = '."<br>"; var_dump($out);
           //Обработка ответа, дозаполнение полей контакта
           if (isset($out['status']) && $out['status'] == 'ok') {
             if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
@@ -654,12 +360,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
                 $contact['data_tasks']['id'] = $out['response'][0]['id'];
               }
             }
-          // } else {
-           // $contact['isAddTasks'] = false;
-//!!! Как отбрабатывать ошибки ???
           }
           unset($data);
-
           //Создание нового ПРИМЕЧАНИЯ
           $data = [
             [
@@ -705,11 +407,8 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
               $data[0]['task_type'] = $key_field;
             }
           }
-// echo 'var_dump($data[0]) = '."<br>"; var_dump($data[0]);
-
           //Создаем Новое ПРИМЕЧАНИЕ
           $out = $obj->actionNotesAmocrm('add', $data);
-// echo 'Ответ на: Создаем Новое ПРИМЕЧАНИЕ. '.'var_dump($out) = '."<br>"; var_dump($out);
           //Обработка ответа, дозаполнение полей контакта
           if (isset($out['status']) && $out['status'] == 'ok') {
             if (isset($out['count'], $out['response'], $out['response'][0]) && $out['count'] > 0) {
@@ -719,9 +418,6 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
                 $contact['data_notes']['id'] = $out['response'][0]['id'];
               }
             }
-          // } else {
-           // $contact['isAddNotes'] = false;
-//!!! Как отбрабатывать ошибки ???
           }
           unset($data,$out,$key_field,$obj);
         }
@@ -735,65 +431,13 @@ if (isset($_POST['contact']['queue_hash'], $_POST['contact']['name'], $_POST['co
           if (($key = array_search($contact['request']['hash'], array_column($_SESSION['queue_contacts'], 'hash'))) !== false) {
             $_SESSION['queue_contacts'][$key]['isCompleted'] = true;
           }
-// echo 'var_dump($queue_contacts) = '."<br>"; var_dump($queue_contacts);
         }
         unset($key);
-
-
-//!!! Остановился здесь!!!
-
-
-      }//if ($status_time_authorization && isset($subdomain)) {
-    }//if (isset($status_authorization) && $status_authorization) {
+      }
+    }
   }
-}//Считывание из $_POST - данных контакта для поика, обработки и добавления в AmoCRM
-
-
-//!!! Информация по Контакту, Сделке, и т.д.
-// if (isset($contact)) {
-//   echo 'var_dump($contact) = '."<br>"; var_dump($contact);
-//   if (isset($contact['data_contact'])) {
-//     echo 'var_dump($contact[\'data_contact\']) = '."<br>"; var_dump($contact['data_contact']);
-//     if (isset($contact['data_contact']['custom_fields']) && is_array($contact['data_contact']['custom_fields'])) {
-//       for ($z = 0; $z < count($contact['data_contact']['custom_fields']); $z++) {
-//         echo 'var_dump($contact[\'data_contact\'][\'custom_fields\']['.$z.']) = '."<br>"; var_dump($contact['data_contact']['custom_fields'][$z]);
-//       }
-//     }
-//   }
-//   if (isset($contact['data_leads'])) {
-//     echo 'var_dump($contact[\'data_leads\']) = '."<br>"; var_dump($contact['data_leads']);
-//     if (isset($contact['data_leads']['custom_fields']) && is_array($contact['data_leads']['custom_fields'])) {
-//       for ($z = 0; $z < count($contact['data_leads']['custom_fields']); $z++) {
-//         echo 'var_dump($contact[\'data_leads\'][\'custom_fields\']['.$z.']) = '."<br>"; var_dump($contact['data_leads']['custom_fields'][$z]);
-//       }
-//     }
-//   }
-//   if (isset($contact['data_tasks'])) {
-//     echo 'var_dump($contact[\'data_tasks\']) = '."<br>"; var_dump($contact['data_tasks']);
-//   }
-//   if (isset($contact['data_notes'])) {
-//     echo 'var_dump($contact[\'data_notes\']) = '."<br>"; var_dump($contact['data_notes']);
-//   }
-// } else {
-//   echo 'var_dump($contact) = NULL'."<br>";
-// }
-// if (!empty($_SESSION['queue_contacts'])) {
-//   echo 'var_dump($_SESSION[\'queue_contacts\']) = '."<br>"; var_dump($_SESSION['queue_contacts']);
-// }
-//!!! Конец.Информация по ...
-
-// echo 'var_dump($_SESSION[\'authAmocrm\'][\'server_time\']) = '."<br>"; var_dump($_SESSION['authAmocrm']['server_time']);
-// echo 'var_dump($_SESSION[\'loginAmocrm\'][\'login_time\']) = '."<br>"; var_dump($_SESSION['loginAmocrm']['login_time']);
-// echo 'date("Y-m-d\TH:i:sO", $_SESSION[\'loginAmocrm\'][\'login_time\']) = '.date("Y-m-d\TH:i:sO", $_SESSION['loginAmocrm']['login_time'])."<br>";
-// echo 'date("Y-m-d\TH:i:sO", time()) = '.date("Y-m-d\TH:i:sO", time())."<br>";
-// echo 'date("Y-m-d\TH:i:sO", time()-15*60) = '.date("Y-m-d\TH:i:sO", time()-15*60)."<br>";
-// echo 'date("Y-m-d\TH:i:sO", 15*60) = '.date("Y-m-d\TH:i:sO", 15*60)."<br>";
-// echo 'Соккет авторизации еще Актуален?'."<br>";
-// echo 'var_dump($_SESSION[\'loginAmocrm\'][\'login_time\'] > time()-15*60) = ('.$_SESSION['loginAmocrm']['login_time'].' > '.(time()-15*60).' )'."<br>"; var_dump($_SESSION['loginAmocrm']['login_time'] > time()-15*60);
-// echo 'var_dump(loginApiAmocrm::isRelevantAuth()) = '."<br>"; var_dump(loginApiAmocrm::isRelevantAuth());
-
+}
 session_write_close();
-
 ?><!DOCTYPE HTML>
 <html>
 <head>

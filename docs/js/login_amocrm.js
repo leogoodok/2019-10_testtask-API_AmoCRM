@@ -28,23 +28,19 @@ jQuery('#inputEmail').blur( function() {
   if (value.length) {
     if (value.search(re) == 0) {
       $(this).removeAttr('aria-invalid');
-      // $(this).attr('aria-valid', 'true');
       $(this).removeClass('is-invalid').addClass('is-valid');
     } else {
-      // $(this).removeAttr('aria-valid');
       $(this).attr('aria-invalid', 'true');
       $(this).removeClass('is-valid').addClass('is-invalid');
       $(target_error).text('Введен некорректный адрес электронной почты');
     }
   } else {
   //! Т.к. по условию это обязательное поле, то закоментируем вывод ошибки
-    // $(this).removeAttr('aria-valid');
     $(this).attr('aria-invalid', 'true');
     $(this).removeClass('is-valid').addClass('is-invalid');
     $(target_error).text('Пожалуйста, заполните поле');
   //! Т.к. по условию это обязательное поле, то "пустое поле" это НЕ нормально
     // $(this).removeAttr('aria-invalid');
-    // $(this).attr('aria-valid', 'true');
     // $(this).removeClass('is-invalid').addClass('is-valid');
   }
 });
@@ -79,24 +75,18 @@ jQuery('#inputUserKey').blur( function() {
   if (value.length) {
     if (value.length == 40) {
       $(this).removeAttr('aria-invalid');
-      // $(this).attr('aria-valid', 'true');
       $(this).removeClass('is-invalid').addClass('is-valid');
     } else {
-      // $(this).removeAttr('aria-valid');
       $(this).attr('aria-invalid', 'true');
       $(this).removeClass('is-valid').addClass('is-invalid');
       $(target_error).text('Поле должно содержать 40 символов');
     }
   } else {
-    // $(this).removeAttr('aria-valid');
     $(this).attr('aria-invalid', 'true');
     $(this).removeClass('is-valid').addClass('is-invalid');
     $(target_error).text('Пожалуйста, заполните поле');
   }
 });
-
-
-
 
 
 /**
@@ -128,26 +118,18 @@ jQuery('#inputSubdomain').blur( function() {
   if (value.length) {
     // if (value.length == 40) {
       $(this).removeAttr('aria-invalid');
-      // $(this).attr('aria-valid', 'true');
       $(this).removeClass('is-invalid').addClass('is-valid');
     // } else {
-    //   // $(this).removeAttr('aria-valid');
     //   $(this).attr('aria-invalid', 'true');
     //   $(this).removeClass('is-valid').addClass('is-invalid');
     //   $(target_error).text('Поле должно содержать 40 символов');
     // }
   } else {
-    // $(this).removeAttr('aria-valid');
     $(this).attr('aria-invalid', 'true');
     $(this).removeClass('is-valid').addClass('is-invalid');
     $(target_error).text('Пожалуйста, заполните поле');
   }
 });
-
-
-
-
-
 
 
 /**
@@ -159,25 +141,13 @@ jQuery('#button_submit').click( function() {
   $($(this).data('targetResult')).parent().addClass('d-none');
   if (!(form instanceof jQuery)) return;
   form.find('input[name]').each(function(i,elem) {
-
-// console.log ('Найден input[name], name = ' + $(this).attr('name'));
-// console.log ('Найден input[name], aria-invalid = ' + $(this).attr('aria-invalid'));
-// console.log ('Найден input[name], ($(this).attr(\'aria-invalid\') != \'true\') = ' + ($(this).attr('aria-invalid') != 'true'));
-
     if ($(this).attr('aria-invalid')) {
       valid_all = false;
       $(this).removeClass('is-valid').addClass('is-invalid');
     }
   });
-
-// console.log ('valid_all = ' + valid_all);
-
   if (!valid_all) return;
-
   //отправка формы
   form.submit();
 });
-
-
-
 });

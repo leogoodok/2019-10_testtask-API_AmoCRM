@@ -1,43 +1,20 @@
 <!DOCTYPE HTML>
 <html><?php
-
-/*** make it or break it ***/
-//error_reporting(E_ALL);//!!! ВРЕМЕННО !!!
-
 include_once("../myphp/models/db/TabUsers.php");
-//include_once("../myphp/models/pager.class.php");
-
-//Тек.страница
 $page_name = htmlentities($_SERVER['PHP_SELF']);
-
-//Создание экземпляра класса с созданием соединения с БД
 $table = new \app\models\db\TabUsers;
-
-//количество записей в БД
 $total_records = (int)$table->readCountTotal();
-
-//количество результатов на странице - можно из $_GET['limit']
 $limit = 10;
-
-//проверить номер страницы в GET
 if( filter_has_var(INPUT_GET, "page") == false) {
-    //нет номера страницы в GET - номер 1
     $page = 1;
-//если номер страницы не является целым или не находится в пределах диапазона - номер страницы 1
 } elseif (filter_var($_GET['page'], FILTER_VALIDATE_INT, array("min_range" => 1, "max_range" => ceil($total_records/$limit))) == false) {
     $page = 1;
 } else {
-    //если все хорошо номер страницы из $_GET
     $page = (int)$_GET['page'];
 }
-
-//Получить данные
 $offset = ($page - 1) * $limit;
 $dataPager = $table->readDataPager($offset, $limit);
-//echo '$dataPager = '."<br>"; echo var_dump($dataPager);
-
 $table = null;
-
 //Для пагинатора и линкера
 $optionsPager = [
   'options' => [
@@ -59,7 +36,6 @@ if (($optionsPager['lastPage'] = $optionsPager['firstPage'] + $optionsPager['pag
 }
 $optionsPager['firstPageLabelDisable'] = ($optionsPager['currentPage'] == $optionsPager['firstPage']) ? true : false;
 $optionsPager['lastPageLabelDisable'] = ($optionsPager['currentPage'] == $optionsPager['lastPage']) ? true : false;
-
 unset($table,$page,$offset,$limit,$total_records);
 ?>
 
@@ -68,7 +44,6 @@ unset($table,$page,$offset,$limit,$total_records);
 <meta name="robots" content="index,follow" >
 <title>Тестовое задание 2</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<!-- <link href="assets/bootstrap4/css/bootstrap.css" rel="stylesheet"> -->
 <link href="css/fonts.css" rel="stylesheet">
 <link href="css/testtask1.css" rel="stylesheet" type="text/css">
 </head>
@@ -116,7 +91,7 @@ unset($active_item,$brand);
   </div>
   <div class="row justify-content-center pb-2">
     <div class="col">
-      <table class="table table-striped"><!--  table-bordered -->
+      <table class="table table-striped">
         <caption><small>Список пользователей</small></caption>
         <thead class="thead-light">
           <tr class="sort-ordinal">
@@ -136,7 +111,7 @@ unset($active_item,$brand);
           <tr>
             <th scope="row"><?= $j ?></th>
             <td><?= $dataPager[$i]['surname'] ?></td>
-            <td><?= $dataPager[$i]['birthday'] ?></td><!-- date('d.m.Y г.', strtotime((int)$dataPager[$i]['birthday'])) -->
+            <td><?= $dataPager[$i]['birthday'] ?></td>
             <td><?= $dataPager[$i]['phoneNumber'] ?></td>
             <td><?= $dataPager[$i]['email'] ?></td>
             <td><?= $dataPager[$i]['carBrand'] ?></td>
@@ -155,13 +130,8 @@ unset($link_github);
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-
-<!-- <script src="assets/jquery/jquery.js" type="text/javascript"></script> -->
-<!-- <script src="assets/bootstrap4/js/bootstrap.js" type="text/javascript"></script> -->
-<!-- <script src="assets/bootstrap4/js/bootstrap.bundle.js" type="text/javascript"></script> -->
 <script src="js/testtask1.js" type="text/javascript"></script>
 </body>
 </html>
