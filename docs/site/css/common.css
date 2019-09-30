@@ -1,0 +1,707 @@
+@font-face {
+    font-family: 'pf_agora_sans_problack';
+    src: url('fonts/PFAgoraSansPro-Black-webfont.eot');
+    src: url('fonts/PFAgoraSansPro-Black-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/PFAgoraSansPro-Black-webfont.woff2') format('woff2'),
+    url('fonts/PFAgoraSansPro-Black-webfont.woff') format('woff'),
+    url('fonts/PFAgoraSansPro-Black-webfont.ttf') format('truetype'),
+    url('fonts/PFAgoraSansPro-Black-webfont.svg#pf_agora_sans_problack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pf_agora_sans_probold';
+    src: url('fonts/PFAgoraSansPro-Bold-webfont.eot');
+    src: url('fonts/PFAgoraSansPro-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/PFAgoraSansPro-Bold-webfont.woff2') format('woff2'),
+    url('fonts/PFAgoraSansPro-Bold-webfont.woff') format('woff'),
+    url('fonts/PFAgoraSansPro-Bold-webfont.ttf') format('truetype'),
+    url('fonts/PFAgoraSansPro-Bold-webfont.svg#pf_agora_sans_probold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pf_agora_sans_promedium';
+    src: url('fonts/PFAgoraSansPro-Medium-webfont.eot');
+    src: url('fonts/PFAgoraSansPro-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/PFAgoraSansPro-Medium-webfont.woff2') format('woff2'),
+    url('fonts/PFAgoraSansPro-Medium-webfont.woff') format('woff'),
+    url('fonts/PFAgoraSansPro-Medium-webfont.ttf') format('truetype'),
+    url('fonts/PFAgoraSansPro-Medium-webfont.svg#pf_agora_sans_promedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pf_agora_sans_proregular';
+    src: url('fonts/PFAgoraSansPro-Reg-webfont.eot');
+    src: url('fonts/PFAgoraSansPro-Reg-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/PFAgoraSansPro-Reg-webfont.woff2') format('woff2'),
+    url('fonts/PFAgoraSansPro-Reg-webfont.woff') format('woff'),
+    url('fonts/PFAgoraSansPro-Reg-webfont.ttf') format('truetype'),
+    url('fonts/PFAgoraSansPro-Reg-webfont.svg#pf_agora_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'intro_regular';
+    src: url('fonts/is2nf5pp-webfont.eot');
+    src: url('fonts/is2nf5pp-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/is2nf5pp-webfont.woff2') format('woff2'),
+    url('fonts/is2nf5pp-webfont.woff') format('woff'),
+    url('fonts/is2nf5pp-webfont.ttf') format('truetype'),
+    url('fonts/is2nf5pp-webfont.svg#intro_regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    min-height: 100%;
+    font-family: 'pf_agora_sans_proregular';
+}
+
+body {
+    margin: 0 auto;
+}
+
+a, input, textarea {
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+.clr {
+    clear: both;
+}
+
+.wrap {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#nav {
+    height: 47px;
+    background: url(../images/nav.png) repeat-x;
+    min-width: 1000px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0.8;
+    z-index: 9996;
+}
+
+#nav .wrap {
+    position: relative;
+}
+
+#nav ul li {
+    float: left;
+    margin: 0 110px 0 0;
+}
+
+#nav ul li:first-child {
+    margin: 0 110px 0 10px;
+}
+
+#nav ul li:last-child {
+    margin: 0;
+}
+
+#nav ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 11px 10px 0 10px;
+    border-top: 5px solid #0074a7;
+}
+
+#nav ul li a:hover {
+    border-top: 5px solid #fff;
+}
+
+#header {
+    padding: 47px 0 0 0;
+    min-width: 1000px;
+}
+
+#header .top_header {
+    padding: 0 0 10px;
+}
+
+#header .logo {
+    float: left;
+    width: 290px;
+    padding: 10px 120px 0 20px;
+}
+
+#header .mail_h {
+    float: left;
+    width: 135px;
+    padding: 5px 0 5px 40px;
+    background: url(../images/mail.png) no-repeat left center;
+    font-size: 18px;
+    margin: 40px 0 0 0;
+}
+
+#header .phone_h {
+    float: right;
+    text-align: right;
+    padding: 10px 35px 0 0;
+}
+
+#header .phone_h p {
+    font-size: 18px;
+}
+
+#header .phone_h p span {
+    font-size: 36px;
+    color: #0088b2;
+}
+
+#header .phone_h a {
+    color: #000;
+    font-size: 18px;
+}
+
+#header .phone_h a:hover {
+    text-decoration: none;
+}
+
+#header .main_block {
+    padding: 35px 0 0 0;
+    height: 638px;
+    background: url(../images/main.jpg) no-repeat top center;
+    min-width: 1000px;
+}
+
+#header .main_block1 {
+    padding: 25px 0 0 0;
+    height: 648px;
+    background: url(../images/main1.jpg) no-repeat top center;
+    min-width: 1000px;
+}
+
+#header .main_block .form2 {
+    width: 326px;
+    height: 279px;
+    background: url(../images/form.png) no-repeat center center;
+    text-align: center;
+    padding: 20px 0 0 0;
+    margin: 15px 0 0 50px;
+}
+
+#header .main_block .form2 p {
+    color: #fff;
+    font-size: 17px;
+    padding: 5px 0;
+}
+
+#header .main_block .form2 input {
+    width: 240px;
+    height: 35px;
+    text-align: center;
+    border: 0;
+    background: #fff;
+    border-radius: 7px;
+}
+
+#header .main_block .form2 input:hover, #header .main_block .form2 input:focus, #header .main_block1 input:hover, #header .main_block1 input:focus {
+    box-shadow: 0 0 10px #666 inset;
+}
+
+#header .main_block1 .button {
+    margin: 15px 0 0 70px !important;
+    display: block;
+}
+
+#header .main_block .form2 .button, #header .main_block1 .button {
+    width: 269px;
+    height: 67px;
+    background: url(../images/button.png) no-repeat;
+    border-radius: 0;
+    margin: 15px 0 0 0;
+    cursor: pointer;
+}
+
+#header .main_block .form2 .button:hover, #header .main_block1 .button:hover {
+    background: url(../images/buttonh.png) no-repeat;
+    box-shadow: 0 0 0 #000;
+}
+
+#header .main_block .form2 .button:focus, #header .main_block1 .button:focus {
+    background: url(../images/buttonf.png) no-repeat;
+    box-shadow: 0 0 0 #000;
+}
+
+#header .main_block1 form span {
+    display: block;
+    color: #fff;
+    padding: 5px 0 5px 35px;
+    background: url(../images/cond.png) no-repeat left center;
+    font-size: 16px;
+    margin: 10px 0 0 5px;
+    text-align: left;
+}
+
+#header .main_block .form2 span {
+    display: block;
+    color: #fff;
+    padding: 0 0 0 35px;
+    background: url(../images/cond.png) no-repeat left center;
+    font-size: 12px;
+    margin: 10px 0 0 45px;
+    text-align: left;
+}
+
+#benefits {
+    padding: 40px 0 30px;
+    min-width: 1000px;
+}
+
+#benefits ul li {
+    float: left;
+}
+
+#benefits ul li img {
+    margin: 0 0 10px 20px;
+    visibility: visible !important;
+}
+
+#benefits ul li .left {
+    text-align: center;
+    font-size: 72px;
+    font-family: 'intro_regular';
+}
+
+#benefits ul li:nth-child(1) {
+    width: 280px;
+    margin: 0 55px 0 0;
+}
+
+#benefits ul li:nth-child(1) .left {
+    float: left;
+    width: 100px;
+}
+
+#benefits ul li:nth-child(1) .right {
+    width: 180px;
+    float: right;
+    font-size: 20px;
+}
+
+#benefits ul li:nth-child(2) {
+    width: 320px;
+    margin: 0 55px 0 0;
+}
+
+#benefits ul li:nth-child(2) .left {
+    float: left;
+    width: 170px;
+}
+
+#benefits ul li:nth-child(2) .right {
+    width: 140px;
+    float: right;
+    font-size: 20px;
+}
+
+#benefits ul li:nth-child(3) {
+    width: 280px;
+}
+
+#benefits ul li:nth-child(3) .left {
+    float: left;
+    width: 100px;
+}
+
+#benefits ul li:nth-child(3) .right {
+    width: 180px;
+    float: right;
+    font-size: 20px;
+}
+
+#calc {
+    padding: 95px 0 70px;
+    background: #dff0f6 url(../images/calc_t.png) repeat-x;
+    min-width: 1000px;
+}
+
+#calc h2, #block_o h2 {
+    font-family: 'intro_regular';
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ben_c ul {
+    padding: 45px 0 0 120px;
+}
+
+.ben_c ul li {
+    float: left;
+    width: 335px;
+    margin: 0 105px 0 0;
+}
+
+.ben_c ul li img {
+    visibility: visible !important;
+}
+
+.ben_c ul li .left {
+    float: left;
+    width: 175px;
+}
+
+.ben_c ul li .right {
+    float: right;
+    width: 150px;
+    padding: 45px 0 0 0;
+}
+
+.ben_c ul li p {
+    font-size: 20px;
+}
+
+.calc_f {
+    padding: 75px 0 0 0;
+}
+
+.calc_f ul li {
+    float: left;
+    text-align: center;
+    margin: 0 35px 0 0;
+    width: 310px;
+}
+
+.calc_f ul li:last-child {
+    margin: 0;
+}
+
+.calc_f ul li h3 {
+    font-size: 24px;
+    color: #007cab;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.calc_f ul li h4 {
+    font-size: 24px;
+    color: #fff;
+    background: #007cab;
+    text-align: center;
+    width: 135px;
+    padding: 3px 0;
+    margin: 10px auto 20px;
+    border-radius: 5px;
+}
+
+.calc_f ul li:nth-child(1) {
+    width: 310px;
+}
+
+.calc_f ul li:nth-child(1) form {
+    padding: 120px 0 0 0;
+}
+
+.calc_f ul li:nth-child(2) form {
+    padding: 120px 0 0 0;
+}
+
+.calc_f ul li:nth-child(3) form {
+    padding: 30px 0 0 0;
+}
+
+.calc_f form {
+    text-align: left;
+}
+
+.calc_f form label {
+    width: 115px;
+    text-align: right;
+    display: block;
+    float: left;
+    padding: 7px 15px 0 0;
+    text-transform: uppercase;
+}
+
+.calc_f form input, .calc_f form select {
+    width: 170px;
+    height: 25px;
+    margin: 0 0 8px;
+    padding: 0 0 0 10px;
+    border: 0;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.calc_f form select {
+    width: 180px;
+}
+
+.calc_f form .submit_calc {
+    display: block;
+    width: 309px;
+    height: 69px;
+    margin: 25px 0 0 0;
+    background: url(../images/button3.png) no-repeat top center;
+}
+
+.calc_f form .submit_calc:hover {
+    background: url(../images/button3h.png) no-repeat top center;
+}
+
+.calc_f form .submit_calc:focus {
+    background: url(../images/button3f.png) no-repeat top center;
+}
+
+.calc_f form .fff {
+    outline: 3px solid white;
+    outline-offset: -12px;
+    width: 326px;
+    height: 22.3em;
+    background: #0069a0;
+    text-align: center;
+    padding: 20px 0 0 0;
+    margin: 15px 0 0 50px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    margin: 0 0 0 -163px;
+    display: none;
+    z-index: 9999;
+}
+
+.calc_f form .fff p {
+    color: #fff;
+    font-size: 17px;
+    padding: 5px 0;
+}
+
+.calc_f form .fff input {
+    width: 240px;
+    height: 35px;
+    text-align: center;
+    border: 0;
+    background: #fff;
+    border-radius: 7px;
+}
+
+.calc_f form .fff input:hover, .calc_f form .fff input:focus {
+    box-shadow: 0 0 10px #666 inset;
+}
+
+.calc_f form .fff .button {
+    width: 269px;
+    height: 67px;
+    background: url(../images/button.png) no-repeat;
+    border-radius: 0;
+    margin: 15px 0 0 0;
+    cursor: pointer;
+}
+
+.calc_f form .fff .button:hover {
+    background: url(../images/buttonh.png) no-repeat;
+    box-shadow: 0 0 0 #000;
+}
+
+.calc_f form .fff .button:focus {
+    background: url(../images/buttonf.png) no-repeat;
+    box-shadow: 0 0 0 #000;
+}
+
+.calc_f form .fff span {
+    display: block;
+    color: #fff;
+    padding: 0 0 0 35px;
+    background: url(../images/cond.png) no-repeat left center;
+    font-size: 12px;
+    margin: 10px 0 0 45px;
+    text-align: left;
+}
+
+#block_o {
+    padding: 55px 0 40px 0;
+    min-width: 1000px;
+}
+
+#block_o ul {
+    padding: 45px 0 0 120px;
+}
+
+#block_o ul li {
+    float: left;
+    width: 375px;
+    margin: 0 65px 0 0;
+}
+
+#block_o ul li img {
+    visibility: visible !important;
+}
+
+#block_o ul li .left {
+    float: left;
+    width: 175px;
+}
+
+#block_o ul li .right {
+    float: right;
+    width: 190px;
+    padding: 45px 0 0 0;
+}
+
+#block_o ul li p {
+    font-size: 20px;
+}
+
+#footer {
+    padding: 15px 0;
+    background: #0069a0;
+    min-width: 1000px;
+}
+
+#footer .copy {
+    float: left;
+    width: 130px;
+    padding: 0 0 0 10px;
+}
+
+#footer .copy p {
+    color: #fff;
+    font-size: 17px;
+}
+
+#footer .phone_f {
+    float: right;
+    text-align: right;
+    padding: 0 10px 0 0;
+}
+
+#footer .phone_f p {
+    font-size: 18px;
+    color: #fff;
+}
+
+#footer .phone_f p span {
+    font-size: 36px;
+    color: #fff;
+}
+
+#footer .phone_f a {
+    color: #fff;
+    font-size: 18px;
+}
+
+#footer .phone_f a:hover {
+    text-decoration: none;
+}
+
+[data-form] {
+    cursor: pointer;
+}
+
+.close {
+    width: 33px;
+    height: 33px;
+    background: url(../images/close.png) no-repeat top center;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: block;
+    cursor: pointer;
+}
+
+.form {
+    border: 2px solid #fff;
+    padding: 20px 0 10px;
+    width: 326px;
+    text-align: center;
+    margin: 0 auto;
+    position: fixed;
+    top: 10%;
+    left: calc(50% - 163px);
+    background: #0069a0;
+    box-shadow: 0 0 10px #999;
+    display: none;
+    z-index: 9999;
+}
+
+.form h3 {
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #fff;
+    padding: 0 0 15px;
+}
+
+.form p {
+    color: #fff;
+    font-size: 17px;
+    padding: 5px 0;
+}
+
+.form input {
+    width: 240px;
+    height: 35px;
+    text-align: center;
+    border: 0;
+    background: #fff;
+    border-radius: 7px;
+}
+
+.form input:hover, .form input:focus {
+    box-shadow: 0 0 10px #666 inset;
+}
+
+.form .button {
+    width: 269px;
+    height: 67px;
+    background: url(../images/button.png) no-repeat;
+    border-radius: 0;
+    margin: 15px 0 0 0;
+    cursor: pointer;
+}
+
+.form .button:hover {
+    background: url(../images/buttonh.png) no-repeat;
+    box-shadow: 0 0 0 #000;
+}
+
+.form .button:focus {
+    background: url(../images/buttonf.png) no-repeat;
+    box-shadow: 0 0 0 #000;
+}
+
+.form span {
+    display: block;
+    color: #fff;
+    padding: 0 0 0 35px;
+    background: url(../images/cond.png) no-repeat left center;
+    font-size: 12px;
+    margin: 10px 0 0 45px;
+    text-align: left;
+}
+
+.error {
+    border: 2px solid #c30000 !important;
+}
+
+.over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/over.png);
+    display: none;
+    z-index: 9998;
+}

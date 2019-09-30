@@ -1,0 +1,19 @@
+#Глобальные настройки
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+
+
+#Глобальные правила преобразования URL
+<IfModule mod_rewrite.c>
+
+#RewriteBase определяет путь к папке
+RewriteBase /testtask/docs/
+#RewriteBase /
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule . testtask1.php [L]
+RewriteRule . login_amocrm.php [L]
+
+</IfModule>
+#Конец. Глобальные правила преобразования URL

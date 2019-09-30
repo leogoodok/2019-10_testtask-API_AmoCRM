@@ -1,0 +1,7 @@
+body {
+  width: 100%;
+}
+.content {
+  height: auto;
+  min-height: calc(100vh - 8rem);
+}

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.site.ru$ [NC]
+RewriteRule ^(.*)$ https://crm-okna.ru/$1 [R=301,L]
