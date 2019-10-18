@@ -223,7 +223,7 @@ jQuery('#button_submit').click( function() {
     'php/api.php',
     form_params,
     function(response) {
-      var result = $.parseJSON(response);
+      var result = $.parseJSON(response),
           target_result = '#result_submit',
           target_phone_number = '#inputPhoneNumber',
           message = (result.status == 'ok') ? result.data.message : result.error.message;

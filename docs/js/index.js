@@ -1,14 +1,4 @@
 /**
- * Обёртка jQuery для избежания конфликтов  при использовании
- * псевдонима $ с другими JS библиотеками
+ *  Скрипт кнопки прокрутки страницы вверх
  */
-jQuery( function($) {
-
-/**
- *  Назначение обработчика события ввода символа в input "Фамилия"
- */
-
-
-
-
-});
+jQuery(function($){$(window).scroll(function(){if($(this).scrollTop()!=0){$("#butToTop").fadeIn();}else{$("#butToTop").fadeOut();}});$("#butToTop").click(function(){$("body,html").animate({scrollTop:0},800);});});
